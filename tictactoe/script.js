@@ -1,6 +1,10 @@
 console.log("Welcome to tic tac toe");
+// let music=new Audio("music.mp3");
+// let audioTurn = new Audio("tunng.mp3");
 
+// let gameover = new Audio("gameover.mp3")
 let turn="X";
+let gameover= false
 
 
 //function to change the turn
@@ -11,21 +15,40 @@ const changeTurn=()=>{
 //function to check for a win
 
 const checkWin=()=>{
+    let boxtext = document.getElementsByClassName('boxtext');
+  let wins =[
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
 
+  ]
+  wins.forEach(e=>{
+    if((boxtext[e[0]].innerText === boxtext[e[1]].innerText)&&(boxtext[e[2]].innerText === boxtext[e[1]].innerText)&& (boxtext[e[0]].innerText !=="")){
+        document.querySelector('.info').innerText =  boxtext[e[0]].innerText +"won";
+         gameover=true; 
+    }
+  })
 }
 
 //Game logic
 //click listener lagana hai
 let boxes = document.getElementsByClassName("box");
 Array.from(boxes).forEach(element=>{
-    let e = document.querySelector(".boxtext")
-    BaseAudioContext.addEventListener("click",()=>{
-        if(e.innerText === ''){
-            e.innerText=turn;
-            changeTurn();
+    let boxtext= element.querySelector(".boxtext")
+    element.addEventListener("click",()=>{
+        if(boxtext.innerText === ''){
+            boxtext.innerText=turn;
+           turn= changeTurn();
             checkWin();
-            document.getElementsByClassName(turn)[0].innerText="turn for"+turn;
-            
+            if(!gameover){
+            document.getElementsByClassName("info")[0].innerText="turn for"+turn;
+            // audioTurn.play();
+            }
         }
     })
 })
