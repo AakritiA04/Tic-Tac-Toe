@@ -15,5 +15,17 @@ const checkWin=()=>{
 }
 
 //Game logic
+//click listener lagana hai
 let boxes = document.getElementsByClassName("box");
-Array.from(boxes).forEacg
+Array.from(boxes).forEach(element=>{
+    let e = document.querySelector(".boxtext")
+    BaseAudioContext.addEventListener("click",()=>{
+        if(e.innerText === ''){
+            e.innerText=turn;
+            changeTurn();
+            checkWin();
+            document.getElementsByClassName(turn)[0].innerText="turn for"+turn;
+            
+        }
+    })
+})
