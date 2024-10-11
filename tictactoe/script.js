@@ -52,3 +52,16 @@ Array.from(boxes).forEach(element=>{
         }
     })
 })
+
+//add onclick listener to rest button
+
+reset.addEventListener('click',()=>{
+  let boxtexts= document.querySelectorAll('.boxtext');
+  Array.from(boxtexts).forEach(element=>{
+    element.innerText=""
+  });
+  turn='X';
+  gameover=false
+  document.getElementsByClassName("info")[0].innerText="turn for"+turn;
+
+})
